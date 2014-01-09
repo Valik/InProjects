@@ -28,8 +28,10 @@
         </th>
         <th></th>
     </tr>
+ </table>
 
 @foreach (var item in Model) {
+ <table>
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Nickname)
@@ -47,11 +49,34 @@
             @Html.DisplayFor(modelItem => item.Info)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
         </td>
     </tr>
+</table>
+    <p>Projects:</p>
+    <ul>
+       @foreach(var curProject in item.Projects)
+       {
+
+            <li>Name @curProject.Name</li>
+            <li><b>Tags:</b></li>
+            foreach(var curTag in curProject.Tags)
+            {
+                <li>
+                    @curTag.Name
+                </li>
+            }
+            <li><b>Participants:</b></li>
+            foreach (var curParticipant in curProject.Participants)
+            {
+                <li>
+                    @curParticipant.Name
+                </li>
+            }
+        }
+   </ul>
+    
 }
 
-</table>

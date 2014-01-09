@@ -12,22 +12,11 @@ namespace InProjects.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(InProjects.Business.UserContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
             var users = new List<User>
             {
                 new User { Nickname = "Valik1", Name = "a1" },
@@ -36,9 +25,6 @@ namespace InProjects.Migrations
                 new User { Nickname = "Valik4", Name = "a4" },
                 new User { Nickname = "Valik5", Name = "a5", Info = "asdfacda" },
             };
-
-            users.ForEach(u => context.Users.Add(u));
-            context.SaveChanges();
 
             var tags = new List<Tag>
             {
@@ -49,7 +35,26 @@ namespace InProjects.Migrations
                 new Tag { Name = "Ruby" }
             };
 
+            var projects = new List<Project>
+            {
+                new Project { Name = "pr1", Creator = users[0]},
+                new Project { Name = "pr2", Creator = users[1]},
+                new Project { Name = "pr3", Creator = users[2]},
+            };
+
+            projects[0].Tags.Add(tags[0]);
+            projects[0].Tags.Add(tags[1]);
+
+            projects[1].BlackList.Add(users[2]);
+            projects[1].BlackList.Add(users[3]);
+
+            users.ForEach(u => context.Users.Add(u));
+            context.SaveChanges();
+
             tags.ForEach(t => context.Tags.Add(t));
+            context.SaveChanges();
+
+            projects.ForEach(p => context.Projects.Add(p));
             context.SaveChanges();
         }
     }

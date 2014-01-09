@@ -26,7 +26,47 @@ namespace InProjects.Business
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Project>()
+                .HasMany(p => p.Participants)
+                .WithMany(u => u.Projects)
+                .Map(m =>
+                    {
+                        m.ToTable("ProjectParticipants");
+                        m.MapLeftKey("ProjectId");
+                        m.MapRightKey("UserId");
+                    });
+
+            modelBuilder.Entity<Project>()
+                .HasMany(p => p.Subscribers)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("ProjectSubscribers");
+                    m.MapLeftKey("ProjectId");
+                    m.MapRightKey("UserId");
+                });
+
+            modelBuilder.Entity<Project>()
+                .HasMany(p => p.VisibilityList)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("ProjectVisibilityList");
+                    m.MapLeftKey("ProjectId");
+                    m.MapRightKey("UserId");
+                });
+
+            modelBuilder.Entity<Project>()
+                .HasMany(p => p.BlackList)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("ProjectBlackList");
+                    m.MapLeftKey("ProjectId");
+                    m.MapRightKey("UserId");
+                });
         } 
     }
 }

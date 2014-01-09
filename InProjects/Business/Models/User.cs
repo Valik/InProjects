@@ -8,15 +8,21 @@ namespace InProjects.Business.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public User()
+        {
+            Projects = new HashSet<Project>();
+            Tags = new HashSet<Tag>();
+        }
+
+        public int UserId { get; set; }
         [Required]
-        [StringLength(50)]
+        [MaxLength(50)]
         public string Nickname { get; set; }
-
+        [MaxLength(50)]
         public string Name { get; set; }
-
+        [MaxLength(50)]
         public string Surname { get; set; }
-
+        [MaxLength(200)]
         public string Location { get; set; }
 
         public string Info { get; set; }
