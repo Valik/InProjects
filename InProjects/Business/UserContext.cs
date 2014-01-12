@@ -1,6 +1,7 @@
 ﻿using InProjects.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
@@ -13,14 +14,6 @@ namespace InProjects.Business
         public DbSet<User> Users { get; set; }
 
         public DbSet<Project> Projects { get; set; }
-
-        //public DbSet<Participant> Participants { get; set; }
-
-        //public DbSet<ProjectSubscriber> ProjectSubscribers { get; set; }
-
-        //public DbSet<VisibleUser> VisibilityList { get; set; }
-
-        //public DbSet<BanUser> BlackList { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
 
@@ -67,6 +60,11 @@ namespace InProjects.Business
                     m.MapLeftKey("ProjectId");
                     m.MapRightKey("UserId");
                 });
+
+            modelBuilder.Entity<User>()
+                        .Property(p => p.CreatedDate)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+                        
         } 
     }
 }

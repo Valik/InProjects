@@ -49,6 +49,9 @@
             @Html.DisplayFor(modelItem => item.Info)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
             @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
@@ -60,7 +63,8 @@
        @foreach(var curProject in item.Projects)
        {
 
-            <li>Name @curProject.Name</li>
+            <li>Project Name @curProject.Name</li>
+            <li>Created Date @curProject.CreatedDate</li>
             <li><b>Tags:</b></li>
             foreach(var curTag in curProject.Tags)
             {

@@ -32,8 +32,10 @@ namespace InProjects.Business.Models
         public string Logo { get; set; }
 
         public bool UseLogo { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime CreatedDate { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         [ForeignKey("UserId")]
         public User Creator 
         {

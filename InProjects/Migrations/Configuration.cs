@@ -48,14 +48,22 @@ namespace InProjects.Migrations
             projects[1].BlackList.Add(users[2]);
             projects[1].BlackList.Add(users[3]);
 
+            context.Users.RemoveRange(context.Users);
             users.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
 
+            context.Tags.RemoveRange(context.Tags);
             tags.ForEach(t => context.Tags.Add(t));
             context.SaveChanges();
 
+            context.Projects.RemoveRange(context.Projects);
             projects.ForEach(p => context.Projects.Add(p));
             context.SaveChanges();
+
+            //var pr = context.Projects.First();
+            //pr.Participants.Clear();
+
+            //context.SaveChanges();
         }
     }
 }

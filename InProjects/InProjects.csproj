@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,6 +40,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
@@ -123,13 +125,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Business\DBMigrationConfiguration.cs" />
-    <Compile Include="Business\Models\BanUser.cs" />
     <Compile Include="Business\Models\Participant.cs" />
-    <Compile Include="Business\Models\ProjectSubscriber.cs" />
     <Compile Include="Business\Models\ProjectUser.cs" />
     <Compile Include="Business\Models\Scope.cs" />
-    <Compile Include="Business\Models\VisibleUser.cs" />
     <Compile Include="Business\UserContext.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
