@@ -15,6 +15,10 @@ namespace InProjects.Business
 
         public DbSet<Project> Projects { get; set; }
 
+        public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
         public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -25,11 +29,11 @@ namespace InProjects.Business
                 .HasMany(p => p.Participants)
                 .WithMany(u => u.Projects)
                 .Map(m =>
-                    {
-                        m.ToTable("ProjectParticipants");
-                        m.MapLeftKey("ProjectId");
-                        m.MapRightKey("UserId");
-                    });
+                {
+                    m.ToTable("ProjectParticipants");
+                    m.MapLeftKey("ProjectId");
+                    m.MapRightKey("UserId");
+                });
 
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.Subscribers)
@@ -59,6 +63,16 @@ namespace InProjects.Business
                     m.ToTable("ProjectBlackList");
                     m.MapLeftKey("ProjectId");
                     m.MapRightKey("UserId");
+                });
+
+            modelBuilder.Entity<Post>()
+                .HasMany(a => a.Tags)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("PostTags");
+                    m.MapLeftKey("PostId");
+                    m.MapRightKey("TagId");
                 });
 
             modelBuilder.Entity<User>()

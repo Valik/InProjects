@@ -125,7 +125,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\Models\Post.cs" />
     <Compile Include="Business\Models\Participant.cs" />
+    <Compile Include="Business\Models\Article.cs" />
+    <Compile Include="Business\Models\ProjectPost.cs" />
     <Compile Include="Business\Models\ProjectUser.cs" />
     <Compile Include="Business\Models\Scope.cs" />
     <Compile Include="Business\UserContext.cs" />

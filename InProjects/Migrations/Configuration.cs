@@ -60,6 +60,8 @@ namespace InProjects.Migrations
             projects.ForEach(p => context.Projects.Add(p));
             context.SaveChanges();
 
+            context.Users.First().CreatedDate = DateTime.MaxValue;
+            context.SaveChanges();
             //var pr = context.Projects.First();
             //pr.Participants.Clear();
 
