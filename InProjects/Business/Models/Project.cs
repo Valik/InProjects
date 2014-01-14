@@ -28,7 +28,7 @@ namespace InProjects.Business.Models
         public string Info { get; set; }
 
         public string Image { get; set; }
-
+        
         public string Logo { get; set; }
 
         public bool UseLogo { get; set; }

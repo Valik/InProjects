@@ -21,6 +21,8 @@ namespace InProjects.Business
 
         public DbSet<Tag> Tags { get; set; }
 
+        public DbSet<Comment> Comments { get; set; } 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -75,9 +77,7 @@ namespace InProjects.Business
                     m.MapRightKey("TagId");
                 });
 
-            modelBuilder.Entity<User>()
-                        .Property(p => p.CreatedDate)
-                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            
                         
         } 
     }
