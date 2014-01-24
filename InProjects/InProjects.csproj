@@ -132,8 +132,9 @@
     <Compile Include="Business\Models\ProjectPost.cs" />
     <Compile Include="Business\Models\ProjectUser.cs" />
     <Compile Include="Business\Models\Scope.cs" />
+    <Compile Include="Business\Services\ServiceBase.cs" />
     <Compile Include="Business\UserContext.cs" />
-    <Compile Include="Business\UserService.cs" />
+    <Compile Include="Business\Services\UserService.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">

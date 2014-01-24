@@ -13,12 +13,16 @@ namespace InProjects.Business.Models
         {
             Projects = new HashSet<Project>();
             Tags = new HashSet<Tag>();
+            Subscribers = new HashSet<User>();
         }
 
         public int UserId { get; set; }
         [Required]
         [MaxLength(50)]
         public string Nickname { get; set; }
+        [Required]
+        [MinLength(6)]
+        public string Password { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(50)]
@@ -37,5 +41,7 @@ namespace InProjects.Business.Models
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
+
+        public virtual ICollection<User> Subscribers { get; set; }
     }
 }
