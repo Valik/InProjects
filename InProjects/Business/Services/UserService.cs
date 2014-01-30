@@ -5,6 +5,11 @@ namespace InProjects.Business.Services
 {
     public class UserService : ServiceBase
     {
+        public User SearchUserByNickOrEmail(string nickOrEmail)
+        {
+            var user = DbContext.Users.FirstOrDefault(u => u.Nickname == nickOrEmail || u.Email == nickOrEmail);
+            return user;
+        }
 
         public User GetUserProfile(int userId)
         {

@@ -19,6 +19,9 @@ namespace InProjects.Business.Models
         public int UserId { get; set; }
         [Required]
         [MaxLength(50)]
+        public string Email { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string Nickname { get; set; }
         [Required]
         [MinLength(6)]
