@@ -17,8 +17,12 @@ namespace InProjects
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         protected void Application_Start()
         {
+            logger.Info("Application Start");
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
