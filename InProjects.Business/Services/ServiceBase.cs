@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using InProjects.Business.Models;
 
 namespace InProjects.Business.Services
 {
     public abstract class ServiceBase
     {
-        protected static readonly UserContext DbContext = new UserContext();
+        protected static readonly DataBaseContext DbContext = new DataBaseContext();
         
         protected User GetUser()
         {

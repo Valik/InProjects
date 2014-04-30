@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace InProjects.App_Start
+﻿namespace InProjects.App_Start
 {
     public class PreStartApp
     {

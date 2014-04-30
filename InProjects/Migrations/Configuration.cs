@@ -1,13 +1,9 @@
+using System.Data.Entity.Migrations;
+using InProjects.Business;
+
 namespace InProjects.Migrations
 {
-    using InProjects.Business.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<InProjects.Business.UserContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DataBaseContext>
     {
         public Configuration()
         {
@@ -15,7 +11,7 @@ namespace InProjects.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(InProjects.Business.UserContext context)
+        protected override void Seed(DataBaseContext context)
         {
             //var users = new List<User>
             //{

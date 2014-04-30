@@ -4,10 +4,7 @@ using InProjects.Business.Models;
 using InProjects.Business.Services;
 using InProjects.Migrations;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -34,7 +31,7 @@ namespace InProjects
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataBaseContext, Configuration>());
         }
 
         protected void FormsAuthentication_OnAuthenticate(Object sender, FormsAuthenticationEventArgs e)

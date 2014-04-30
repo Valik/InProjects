@@ -1,13 +1,12 @@
-﻿using InProjects.Business.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using InProjects.Business.Models;
 
 namespace InProjects.Business.Repositories
 {
     public interface IUserRepository
     {
+        IQueryable<User> Users { get; }
+
         User GetCurrentUser();
         
         User SearchUserByNickOrEmail(string nickOrEmail);
@@ -15,5 +14,9 @@ namespace InProjects.Business.Repositories
         User GetUserProfile(int userId);
 
         bool CreateNewUser(User newUser);
+
+        bool EditUser(User editUser);
+
+        bool DeleteUser(int userId);
     }
 }

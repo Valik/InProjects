@@ -6,7 +6,6 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using InProjects.Business;
-using System.Configuration;
 using InProjects.Business.Repositories;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(InProjects.App_Start.NinjectWebCommon), "Start")]
@@ -56,7 +55,7 @@ namespace InProjects.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<UserContext>().ToSelf();
+            kernel.Bind<DataBaseContext>().ToSelf();
             kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
         }        
     }

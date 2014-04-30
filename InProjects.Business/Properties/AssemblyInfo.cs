@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // общие сведения об этой сборке.
-[assembly: AssemblyTitle("InProjects")]
+[assembly: AssemblyTitle("InProjects.Business")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("InProjects")]
-[assembly: AssemblyCopyright("© , 2013")]
+[assembly: AssemblyProduct("InProjects.Business")]
+[assembly: AssemblyCopyright("© , 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для ID-идентификации библиотеки типов, если этот проект видим для COM
-[assembly: Guid("a1fbbcce-2d0f-4dff-808b-bdbfc2e62fb2")]
+[assembly: Guid("7f284f03-8118-456c-9ec8-44467dcb6c35")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

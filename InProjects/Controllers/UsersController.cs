@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using InProjects.Business;
 using InProjects.Business.Models;
+using InProjects.Business.Repositories;
+using Ninject;
 
 namespace InProjects.Controllers
 {
     public class UsersController : Controller
     {
-        private UserContext db = new UserContext();
-
-        //
-        // GET: /Users/
+        [Inject]
+        public IUserRepository UserRepository { get; set; }
 
         public ActionResult Index()
         {
-            var projects = db.Projects;
-            return View(db.Users.ToList());
+            var users = UserRepository.Users;
+            return View(users.ToList());
         }
 
         //
@@ -28,7 +24,7 @@ namespace InProjects.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            var user = db.Users.Find(id);
+            var user = UserRepository.GetUserProfile(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -52,9 +48,11 @@ namespace InProjects.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (UserRepository.CreateNewUser(user))
+                {
+                    return RedirectToAction("Index");
+                }
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Can't create this user");
             }
 
             return View(user);
@@ -65,7 +63,7 @@ namespace InProjects.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            User user = db.Users.Find(id);
+            var user = UserRepository.GetUserProfile(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -81,9 +79,11 @@ namespace InProjects.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (UserRepository.EditUser(user))
+                {
+                    return RedirectToAction("Index");
+                }
+                throw new HttpException((int)HttpStatusCode.BadRequest, "Can't edit this user");
             }
             return View(user);
         }
@@ -93,7 +93,7 @@ namespace InProjects.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            User user = db.Users.Find(id);
+            var user = UserRepository.GetUserProfile(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -107,16 +107,11 @@ namespace InProjects.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
+            if (UserRepository.DeleteUser(id))
+            {
+                return RedirectToAction("Index");
+            }
+            throw new HttpException((int)HttpStatusCode.BadRequest, "Can't delete this user");
         }
     }
 }

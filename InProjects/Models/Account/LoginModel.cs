@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using InProjects.Business.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace InProjects.Models.Account
 {

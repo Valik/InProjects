@@ -1,15 +1,10 @@
 ﻿using InProjects.Business.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace InProjects.Business
 {
-    public class UserContext : DbContext
+    public class DataBaseContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
@@ -76,9 +71,6 @@ namespace InProjects.Business
                     m.MapLeftKey("PostId");
                     m.MapRightKey("TagId");
                 });
-
-            
-                        
         } 
     }
 }
