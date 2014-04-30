@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Security;
+using InProjects.Business.Repositories;
 using InProjects.Business.Services;
 using InProjects.Models.Account;
+using Ninject;
 
 namespace InProjects.Controllers
 {
     public class AccountController : Controller
     {
-        private static readonly UserService UserService = new UserService();
+        [Inject]
+        public IUserRepository UserRepository { get; set; }
 
         public ActionResult Login()
         {
@@ -21,13 +24,12 @@ namespace InProjects.Controllers
             // Lets first check if the Model is valid or not
             if (ModelState.IsValid)
             {
-                var user = UserService.SearchUserByNickOrEmail(model.NickOrEmail);
-                bool userValid = user != null &&
-                                 string.Compare(user.Password, model.Password, StringComparison.InvariantCulture) == 1;
+                var user = UserRepository.SearchUserByNickOrEmail(model.NickOrEmail);
+                var userValid = user != null &&
+                                 string.Compare(user.Password, model.Password, StringComparison.InvariantCulture) == 0;
                 // User found in the database
                 if (userValid)
                 {
-
                     FormsAuthentication.SetAuthCookie(user.Nickname, false);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
