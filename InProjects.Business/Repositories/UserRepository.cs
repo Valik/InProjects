@@ -22,6 +22,19 @@ namespace InProjects.Business.Repositories
             throw new NotImplementedException();
         }
 
+        public User SearchUserBy(string nick, bool or, string email)
+        {
+            var result = DataBaseContext.Users.FirstOrDefault(
+                u => or ? 
+                        string.Compare(u.Nickname, nick, true, CultureInfo.InvariantCulture) == 0 ||
+                        string.Compare(u.Email, email, true, CultureInfo.InvariantCulture) == 0
+                        :
+                        string.Compare(u.Nickname, nick, true, CultureInfo.InvariantCulture) == 0 &&
+                        string.Compare(u.Email, email, true, CultureInfo.InvariantCulture) == 0
+                );
+            return result;
+        }
+
         public User SearchUserByNickOrEmail(string nickOrEmail)
         {
             var result = DataBaseContext.Users.FirstOrDefault(

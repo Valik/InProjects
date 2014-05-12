@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-
+using InProjects.Business.Mappers;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
 using Ninject;
@@ -44,6 +44,7 @@ namespace InProjects.App_Start
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+            kernel.Bind<IMapper>().To<CommonMapper>().InSingletonScope();
 
             RegisterServices(kernel);
             return kernel;

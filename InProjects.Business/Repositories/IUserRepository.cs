@@ -8,8 +8,8 @@ namespace InProjects.Business.Repositories
         IQueryable<User> Users { get; }
 
         User GetCurrentUser();
-        
-        User SearchUserByNickOrEmail(string nickOrEmail);
+
+        User SearchUserBy(string nick, bool or, string email);
 
         User GetUserProfile(int userId);
 
