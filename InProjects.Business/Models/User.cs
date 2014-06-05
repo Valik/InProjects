@@ -31,6 +31,8 @@ namespace InProjects.Business.Models
         [MaxLength(200)]
         public string Location { get; set; }
 
+        public virtual Role Roles { get; set; }
+
         public string Info { get; set; }
 
         public bool ShowMyProjects { get; set; }

@@ -7,7 +7,7 @@ namespace InProjects.Business.Repositories
     {
         IQueryable<User> Users { get; }
 
-        User GetCurrentUser();
+        User Login(string email, string password);
 
         User SearchUserBy(string nick, bool or, string email);
 
@@ -18,5 +18,7 @@ namespace InProjects.Business.Repositories
         bool EditUser(User editUser);
 
         bool DeleteUser(int userId);
+
+        User Get(string email);
     }
 }

@@ -16,7 +16,9 @@ namespace InProjects.Business
 
         public DbSet<Tag> Tags { get; set; }
 
-        public DbSet<Comment> Comments { get; set; } 
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

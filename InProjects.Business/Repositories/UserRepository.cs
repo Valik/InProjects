@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using InProjects.Business.Models;
 using Ninject;
-using System;
 
 namespace InProjects.Business.Repositories
 {
@@ -17,11 +16,12 @@ namespace InProjects.Business.Repositories
             get { return DataBaseContext.Users; }
         }
 
-        public User GetCurrentUser()
+        public User Get(string email)
         {
-            throw new NotImplementedException();
+            var result = DataBaseContext.Users.FirstOrDefault(u => string.Compare(u.Email, email, true, CultureInfo.InvariantCulture) == 0);
+            return result;
         }
-
+        
         public User SearchUserBy(string nick, bool or, string email)
         {
             var result = DataBaseContext.Users.FirstOrDefault(
@@ -73,6 +73,12 @@ namespace InProjects.Business.Repositories
             DataBaseContext.Entry(user).State = EntityState.Modified;
             DataBaseContext.SaveChanges();
             return true;
+        }
+
+        public User Login(string email, string password)
+        {
+            var result = DataBaseContext.Users.FirstOrDefault(u => string.Compare(u.Email, email, true) == 0 && u.Password == password) ;
+            return result;
         }
     }
 }
